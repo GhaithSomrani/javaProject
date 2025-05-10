@@ -17,7 +17,7 @@ public class VendorController {
 
     @PostMapping("/register")
     public ResponseEntity<Vendor> registerVendor(@RequestBody Map<String, Object> payload) {
-        Long customerId = Long.valueOf(payload.get("customerId").toString());
+        Integer customerId = Integer.valueOf(payload.get("customerId").toString());
         String shopName = payload.get("shopName").toString();
         String logo = payload.get("logo") != null ? payload.get("logo").toString() : null;
 
@@ -31,17 +31,17 @@ public class VendorController {
     }
 
     @PutMapping("/{vendorId}/approve")
-    public ResponseEntity<Vendor> approveVendor(@PathVariable Long vendorId) {
+    public ResponseEntity<Vendor> approveVendor(@PathVariable Integer vendorId) {
         return ResponseEntity.ok(vendorService.approveVendor(vendorId));
     }
 
     @PutMapping("/{vendorId}/reject")
-    public ResponseEntity<Vendor> rejectVendor(@PathVariable Long vendorId) {
+    public ResponseEntity<Vendor> rejectVendor(@PathVariable Integer vendorId) {
         return ResponseEntity.ok(vendorService.rejectVendor(vendorId));
     }
 
     @GetMapping("/{customerId}/check")
-    public ResponseEntity<Boolean> isVendorApproved(@PathVariable Long customerId) {
+    public ResponseEntity<Boolean> isVendorApproved(@PathVariable Integer customerId) {
         Vendor vendor = vendorService.findByCustomerId(customerId);
         if (vendor == null) {
             return ResponseEntity.ok(false);

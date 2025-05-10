@@ -10,37 +10,37 @@ import java.util.List;
 public class Vendor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_vendor;
+    private Integer id_vendor; // Changed from Long to Integer
 
-    private Long id_customer;
-    private Long id_supplier;
+    private Integer id_customer; // Changed from Long to Integer
+    private Integer id_supplier; // Changed from Long to Integer
     private String shop_name;
     private String logo;
     private String status;
     private Date date_add;
 
     // Getters and setters
-    public Long getId_vendor() {
+    public Integer getId_vendor() { // Changed return type
         return id_vendor;
     }
 
-    public void setId_vendor(Long id_vendor) {
+    public void setId_vendor(Integer id_vendor) { // Changed parameter type
         this.id_vendor = id_vendor;
     }
 
-    public Long getId_customer() {
+    public Integer getId_customer() { // Changed return type
         return id_customer;
     }
 
-    public void setId_customer(Long id_customer) {
+    public void setId_customer(Integer id_customer) { // Changed parameter type
         this.id_customer = id_customer;
     }
 
-    public Long getId_supplier() {
+    public Integer getId_supplier() { // Changed return type
         return id_supplier;
     }
 
-    public void setId_supplier(Long id_supplier) {
+    public void setId_supplier(Integer id_supplier) { // Changed parameter type
         this.id_supplier = id_supplier;
     }
 
@@ -77,7 +77,7 @@ public class Vendor {
     }
 
     // Methods from diagram
-    public boolean isByCustomerId(Long customerId) {
+    public boolean isByCustomerId(Integer customerId) { // Changed parameter type
         return this.id_customer.equals(customerId);
     }
 

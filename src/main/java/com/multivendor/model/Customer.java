@@ -8,7 +8,7 @@ import java.util.Date;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_customer;
+    private Integer id_customer; // Changed from Long to Integer
 
     private String email;
     private String firstname;
@@ -16,11 +16,11 @@ public class Customer {
     private Date date_add;
 
     // Getters and Setters
-    public Long getId_customer() {
+    public Integer getId_customer() { // Changed return type from Long to Integer
         return id_customer;
     }
 
-    public void setId_customer(Long id_customer) {
+    public void setId_customer(Integer id_customer) { // Changed parameter type from Long to Integer
         this.id_customer = id_customer;
     }
 

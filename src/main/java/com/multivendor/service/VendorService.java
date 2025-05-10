@@ -16,7 +16,7 @@ public class VendorService {
     @Autowired
     private CustomerService customerService;
 
-    public Vendor registerVendor(Long customerId, String shopName, String logo) {
+    public Vendor registerVendor(Integer customerId, String shopName, String logo) {
         // Check if customer exists
         if (!customerService.exists(customerId)) {
             throw new RuntimeException("Customer not found");
@@ -32,14 +32,14 @@ public class VendorService {
         return vendorRepository.save(vendor);
     }
 
-    public Vendor approveVendor(Long vendorId) {
+    public Vendor approveVendor(Integer vendorId) {
         Vendor vendor = vendorRepository.findById(vendorId)
                 .orElseThrow(() -> new RuntimeException("Vendor not found"));
         vendor.setStatus("active");
         return vendorRepository.save(vendor);
     }
 
-    public Vendor rejectVendor(Long vendorId) {
+    public Vendor rejectVendor(Integer vendorId) {
         Vendor vendor = vendorRepository.findById(vendorId)
                 .orElseThrow(() -> new RuntimeException("Vendor not found"));
         vendor.setStatus("rejected");
@@ -50,7 +50,7 @@ public class VendorService {
         return vendorRepository.findByStatus("pending");
     }
 
-    public Vendor findByCustomerId(Long customerId) {
+    public Vendor findByCustomerId(Integer customerId) {
         return vendorRepository.findByIdCustomer(customerId);
     }
 }

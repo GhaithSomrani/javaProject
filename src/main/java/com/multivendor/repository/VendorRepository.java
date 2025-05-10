@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface VendorRepository extends JpaRepository<Vendor, Long> {
-    Vendor findByIdCustomer(Long customerId);
+public interface VendorRepository extends JpaRepository<Vendor, Integer> {
+    Vendor findByIdCustomer(Integer customerId);
     List<Vendor> findByStatus(String status);
 }

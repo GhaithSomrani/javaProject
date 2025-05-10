@@ -1,4 +1,3 @@
-// Added CustomerService.java (needed by VendorService)
 package com.multivendor.service;
 
 import org.springframework.stereotype.Service;
@@ -11,8 +10,8 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public boolean exists(Long customerId) {
+    public boolean exists(Integer customerId) {
         // Implementation should check if the customer exists
-        return customerRepository.existsById(customerId);
+        return customerRepository.existsById(Long.valueOf(customerId));
     }
 }
