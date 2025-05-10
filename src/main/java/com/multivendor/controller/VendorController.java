@@ -1,4 +1,3 @@
-// VendorController.java
 package com.multivendor.controller;
 
 import com.multivendor.model.Vendor;

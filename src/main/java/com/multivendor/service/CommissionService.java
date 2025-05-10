@@ -1,9 +1,10 @@
-// CommissionService.java
+
+// Fixed CommissionService.java
 package com.multivendor.service;
 
 import com.multivendor.model.*;
-import com.multivendor.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
+        import com.multivendor.repository.*;
+        import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,14 +16,24 @@ import java.util.List;
 public class CommissionService {
     @Autowired
     private VendorCommissionRepository commissionRepository;
+
     @Autowired
     private VendorCategoryCommissionRepository categoryCommissionRepository;
+
     @Autowired
     private VendorCommissionLogRepository commissionLogRepository;
+
     @Autowired
     private VendorOrderDetailRepository vendorOrderDetailRepository;
+
     @Autowired
     private VendorTransactionRepository transactionRepository;
+
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     public BigDecimal getCommissionRate(Long vendorId, Long categoryId) {
         // Check if there's a category-specific rate
@@ -118,3 +129,4 @@ public class CommissionService {
         transactionRepository.save(transaction);
     }
 }
+

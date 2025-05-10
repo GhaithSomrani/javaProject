@@ -1,4 +1,3 @@
-//VendorService.java
 package com.multivendor.service;
 
 import com.multivendor.model.Vendor;
@@ -13,6 +12,7 @@ import java.util.List;
 public class VendorService {
     @Autowired
     private VendorRepository vendorRepository;
+
     @Autowired
     private CustomerService customerService;
 
@@ -48,5 +48,9 @@ public class VendorService {
 
     public List<Vendor> getPendingVendors() {
         return vendorRepository.findByStatus("pending");
+    }
+
+    public Vendor findByCustomerId(Long customerId) {
+        return vendorRepository.findByIdCustomer(customerId);
     }
 }

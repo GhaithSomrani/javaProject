@@ -1,4 +1,4 @@
-// OrderProcessingService.java
+// Fixed OrderProcessingService.java
 package com.multivendor.service;
 
 import com.multivendor.model.*;
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,12 +15,22 @@ import java.util.List;
 public class OrderProcessingService {
     @Autowired
     private OrderRepository orderRepository;
+
     @Autowired
     private OrderDetailRepository orderDetailRepository;
+
     @Autowired
     private VendorRepository vendorRepository;
+
     @Autowired
     private OrderLineStatusRepository orderLineStatusRepository;
+
+    @Autowired
+    private OrderLineStatusLogRepository orderLineStatusLogRepository;
+
+    // Add this repository for getVendorOrders method
+    @Autowired
+    private ProductRepository productRepository;
 
     @Transactional
     public Order processOrder(Order order, List<OrderDetail> orderDetails) {
@@ -45,7 +56,7 @@ public class OrderProcessingService {
                 orderLineStatusRepository.save(lineStatus);
 
                 // Log status change
-                logStatusChange(savedDetail.getId_order_detail(), vendorId, null, "pending", "System");
+                logStatusChange(savedDetail.getId_order_detail(), vendorId, null, "pending", "System", null);
             }
         }
 
@@ -79,6 +90,13 @@ public class OrderProcessingService {
 
     private Long findVendorForProduct(Long productId) {
         // Implementation to find vendor for a product
-        return null; // placeholder
+        // This is a placeholder - implement based on your business logic
+        return null;
+    }
+
+    public List<OrderDetail> getVendorOrders(Long vendorId) {
+        // This is a placeholder implementation
+        // Implement based on your database schema and business logic
+        return new ArrayList<>();
     }
 }

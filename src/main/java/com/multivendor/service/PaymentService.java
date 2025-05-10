@@ -1,4 +1,5 @@
-// PaymentService.java
+
+// Fixed PaymentService.java
 package com.multivendor.service;
 
 import com.multivendor.model.*;
@@ -15,6 +16,7 @@ import java.util.List;
 public class PaymentService {
     @Autowired
     private VendorTransactionRepository transactionRepository;
+
     @Autowired
     private VendorPaymentRepository paymentRepository;
 

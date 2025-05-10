@@ -1,4 +1,3 @@
-// VendorRepository.java
 package com.multivendor.repository;
 
 import com.multivendor.model.Vendor;
