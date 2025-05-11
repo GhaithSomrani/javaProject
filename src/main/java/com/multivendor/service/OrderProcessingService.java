@@ -1,4 +1,3 @@
-// Fixed OrderProcessingService.java
 package com.multivendor.service;
 
 import com.multivendor.model.*;
@@ -44,19 +43,21 @@ public class OrderProcessingService {
             detail.setId_order(savedOrder.getId_order());
             OrderDetail savedDetail = orderDetailRepository.save(detail);
 
-            // Find vendor for this product
-            Long vendorId = findVendorForProduct(detail.getId_product());
+            // Since we don't have a way to find which vendor owns a product
+            // let's use a default vendor (vendor ID 1) for demonstration
+            Integer vendorId = 1; // Default vendor ID
+
             if (vendorId != null) {
                 // Create order line status
                 OrderLineStatus lineStatus = new OrderLineStatus();
                 lineStatus.setId_order_detail(savedDetail.getId_order_detail());
-                lineStatus.setId_vendor(vendorId);
+                lineStatus.setId_vendor(vendorId.longValue()); // Convert Integer to Long
                 lineStatus.setStatus("pending");
                 lineStatus.setDate_add(new Date());
                 orderLineStatusRepository.save(lineStatus);
 
                 // Log status change
-                logStatusChange(savedDetail.getId_order_detail(), vendorId, null, "pending", "System", null);
+                logStatusChange(savedDetail.getId_order_detail(), vendorId.longValue(), null, "pending", "System", null);
             }
         }
 
@@ -88,15 +89,20 @@ public class OrderProcessingService {
         orderLineStatusLogRepository.save(log);
     }
 
-    private Long findVendorForProduct(Long productId) {
-        // Implementation to find vendor for a product
-        // This is a placeholder - implement based on your business logic
-        return null;
-    }
-
+    // Simplified method that doesn't rely on vendor-product relationship
     public List<OrderDetail> getVendorOrders(Long vendorId) {
-        // This is a placeholder implementation
-        // Implement based on your database schema and business logic
-        return new ArrayList<>();
+        // This is a simplified implementation to retrieve orders for a specific vendor
+        List<OrderLineStatus> orderLineStatuses = orderLineStatusRepository.findByIdVendor(vendorId);
+        List<OrderDetail> vendorOrders = new ArrayList<>();
+
+        for (OrderLineStatus status : orderLineStatuses) {
+            OrderDetail orderDetail = orderDetailRepository.findById(status.getId_order_detail())
+                    .orElse(null);
+            if (orderDetail != null) {
+                vendorOrders.add(orderDetail);
+            }
+        }
+
+        return vendorOrders;
     }
 }

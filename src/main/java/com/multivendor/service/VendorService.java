@@ -51,6 +51,6 @@ public class VendorService {
     }
 
     public Vendor findByCustomerId(Integer customerId) {
-        return vendorRepository.findByIdCustomer(customerId);
+        return vendorRepository.findById_customer(customerId);
     }
 }

@@ -12,7 +12,8 @@ public class Product {
 
     private String name;
     private Long id_category;
-
+    @Column(name = "vendor_id")
+    private Integer vendorId;
     // Getters and Setters
     public Long getId_product() {
         return id_product;
@@ -36,5 +37,13 @@ public class Product {
 
     public void setId_category(Long id_category) {
         this.id_category = id_category;
+    }
+
+    public Integer getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(Integer vendorId) {
+        this.vendorId = vendorId;
     }
 }
